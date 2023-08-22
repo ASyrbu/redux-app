@@ -10,12 +10,14 @@ const Form = ({ title, handleClick }) => {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="email" />
+                placeholder="email"
+            />
             <input
                 type="password"
                 value={pass}
                 onChange={(e) => setPass(e.target.value)}
-                placeholder="password" />
+                placeholder="password"
+            />
 
             <button
                 onClick={() => handleClick(email, pass)}

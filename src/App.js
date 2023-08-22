@@ -11,7 +11,7 @@ function App() {
             <Route exact path="/register" component={RegisterPage} />
         </Switch>
 
-    )
+    );
 }
 
 export default App;

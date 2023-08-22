@@ -18,7 +18,7 @@ const SignUp = () => {
                     id: user.uid,
                     token: user.accessToken,
                 }));
-                push('/');
+                push('/login');
             })
             .catch(console.error)
     }

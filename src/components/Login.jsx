@@ -20,7 +20,7 @@ const Login = () => {
                 }));
                 push('/');
             })
-            .catch(console.error)
+            .catch(() => alert('Invalid User'))
     }
     return (
         <Form

@@ -65,7 +65,6 @@ const Principal = () => {
                 </div>
             </div>
         </div>
-
     ) : (
         <Redirect to="/login" />
 

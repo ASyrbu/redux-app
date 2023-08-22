@@ -15,7 +15,7 @@ function App() {
             <Route path="/register" component={RegisterPage} />
             <Route path="/news" component={News} />
             <Route path="/cryptocurrencies" component={Cryptocurrencies} />
-            {/* <Route path="/crypto/:id" component={CryptoDetails} /> */}
+            <Route path="/crypto/:coinId" component={CryptoDetails} />
         </Switch>
 
     );

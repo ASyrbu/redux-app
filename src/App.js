@@ -8,11 +8,14 @@ import './App.css';
 
 function App() {
     return (
+
         <Switch>
             <Route exact path="/" component={Principal} />
-            <Route exact path="/login" component={LoginPage} />
-            <Route exact path="/register" component={RegisterPage} />
-
+            <Route path="/login" component={LoginPage} />
+            <Route path="/register" component={RegisterPage} />
+            <Route path="/news" component={News} />
+            <Route path="/cryptocurrencies" component={Cryptocurrencies} />
+            {/* <Route path="/crypto/:id" component={CryptoDetails} /> */}
         </Switch>
 
     );

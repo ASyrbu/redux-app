@@ -28,10 +28,10 @@ const SignUp = () => {
     };
 
     return (
-        <>
-            {errorMessage && <div>{errorMessage}</div>}
-            <Form title="sign up" handleClick={handleRegister} />
-        </>
+        <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded shadow-md">
+            {errorMessage && <div className="text-red-500 mb-4">{errorMessage}</div>}
+            <Form title="Sign Up" handleClick={handleRegister} />
+        </div>
     );
 };
 

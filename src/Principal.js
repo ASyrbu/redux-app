@@ -55,9 +55,9 @@ const Principal = () => {
                             All Rights Reserved.
                         </Typography.Title>
                         <Space>
-                            <Link to="/">Home</Link>
-                            <Link to="/news">News</Link>
-                            <button
+                            <Link className='text-white' to="/">Home</Link>
+                            <Link className='text-white' to="/news">News</Link>
+                            <button class="bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-100 "
                                 onClick={() => dispatch(removeUser())}
                             >Log out from {email}</button>
                         </Space>

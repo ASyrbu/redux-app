@@ -1,5 +1,3 @@
-
-
 import { Link } from 'react-router-dom';
 import { Login } from './Login';
 import { Typography } from 'antd';

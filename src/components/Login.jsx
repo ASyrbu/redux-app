@@ -2,8 +2,8 @@
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { Form } from "./Form";
 import { setUser } from "../store/services/slices/userSlice";
+import { Form } from "./Form";
 import { useState } from "react";
 
 const Login = () => {

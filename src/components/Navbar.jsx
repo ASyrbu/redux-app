@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { Button, Menu, Typography, Avatar } from 'antd';
 import { Link } from 'react-router-dom';
 import { HomeOutlined, BulbOutlined, FundOutlined, MenuOutlined } from '@ant-design/icons';
-
 import icon from '../images/cryptocurrency.png';
+import { Badge } from 'antd'
+import { ShoppingCartOutlined } from '@ant-design/icons';
 
 const Navbar = () => {
     const [activeMenu, setActiveMenu] = useState(true);
     const [screenSize, setScreenSize] = useState(undefined);
+
 
     useEffect(() => {
         const handleResize = () => setScreenSize(window.innerWidth);
@@ -26,6 +29,7 @@ const Navbar = () => {
             setActiveMenu(true);
         }
     }, [screenSize]);
+    const cart = useSelector(state => state.cart.cart);
 
     return (
         <div className="nav-container">
@@ -46,7 +50,15 @@ const Navbar = () => {
                     <Menu.Item icon={<BulbOutlined />}>
                         <Link to="/news">News</Link>
                     </Menu.Item>
+                    <Link to="/cart">
+                        <Badge count={cart.length} offset={[10, 0]}>
+                            <ShoppingCartOutlined
+                                style={{ fontSize: '24px', color: 'white', cursor: 'pointer' }}
+                            />
+                        </Badge>
+                    </Link>
                 </Menu>
+
             )}
         </div>
     );

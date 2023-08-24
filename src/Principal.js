@@ -57,7 +57,7 @@ const Principal = () => {
                         <Space>
                             <Link className='text-white' to="/">Home</Link>
                             <Link className='text-white' to="/news">News</Link>
-                            <button class="bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-100 "
+                            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded"
                                 onClick={() => dispatch(removeUser())}
                             >Log out from {email}</button>
                         </Space>

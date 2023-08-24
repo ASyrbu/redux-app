@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import millify from 'millify';
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart } from '../store/services/slices/cartSlice';
+import { removeFromCart } from '../store/services/slices/cartSlice';
 import { Link } from 'react-router-dom';
 import { Card, Row, Col, Input } from 'antd';
+import { Button } from 'antd';
 
 import { useGetCryptosQuery } from '../store/services/cryptoApi';
 import Loader from './Loader';
@@ -11,6 +15,8 @@ const Cryptocurrencies = ({ simplified }) => {
     const { data: cryptosList, isFetching } = useGetCryptosQuery(count);
     const [cryptos, setCryptos] = useState();
     const [searchTerm, setSearchTerm] = useState('');
+    const cart = useSelector(state => state.cart.cart);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         setCryptos(cryptosList?.data?.coins);
@@ -41,19 +47,30 @@ const Cryptocurrencies = ({ simplified }) => {
                         className="crypto-card"
                         key={currency.uuid}
                     >
+                        <Card
+                            title={`${currency.rank}. ${currency.name}`}
+                            extra={<img className="crypto-image" src={currency.iconUrl} alt='logo' />}
+                            hoverable
+                        >
+                            <Link key={currency.uuid} to={`/crypto/${currency.uuid}`}>
 
-                        {/* Note: Change currency.id to currency.uuid  */}
-                        <Link key={currency.uuid} to={`/crypto/${currency.uuid}`}>
-                            <Card
-                                title={`${currency.rank}. ${currency.name}`}
-                                extra={<img className="crypto-image" src={currency.iconUrl} alt='logo' />}
-                                hoverable
-                            >
                                 <p>Price: {millify(currency.price)}</p>
                                 <p>Market Cap: {millify(currency.marketCap)}</p>
                                 <p>Daily Change: {currency.change}%</p>
-                            </Card>
-                        </Link>
+                            </Link>
+                            <Button
+                                onClick={() => dispatch(addToCart(currency))}
+                            >
+                                {cart.some(item => item.uuid === currency.uuid) ? 'В Корзине (Добавить ещё)' : 'Купить'}
+                            </Button>
+                            <Button
+                                onClick={() => dispatch(removeFromCart(currency))}
+                                disabled={!cart.some(item => item.uuid === currency.uuid)}
+                            >
+                                Удалить из Корзины
+                            </Button>
+                        </Card>
+
                     </Col>
                 ))}
             </Row>

@@ -3,6 +3,8 @@ import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import { cryptoApi } from "./services/cryptoApi";
 import { cryptoNewsApi } from "./services/cryptoNewsApi";
 import userReducer from "./services/slices/userSlice";
+import cartReducer from './services/slices/cartSlice';
+
 import {
     persistStore,
     persistReducer,
@@ -24,6 +26,8 @@ const rootReducer = combineReducers({
     [cryptoApi.reducerPath]: cryptoApi.reducer,
     [cryptoNewsApi.reducerPath]: cryptoNewsApi.reducer,
     user: userReducer,
+    cart: cartReducer,
+
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

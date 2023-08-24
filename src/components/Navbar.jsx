@@ -52,7 +52,7 @@ const Navbar = () => {
                     </Menu.Item>
                     <Link to="/cart">
                         <Badge count={cart.length} offset={[10, 0]}>
-                            <ShoppingCartOutlined
+                            <ShoppingCartOutlined className='pl-5 pt-1'
                                 style={{ fontSize: '24px', color: 'white', cursor: 'pointer' }}
                             />
                         </Badge>

@@ -16,9 +16,9 @@ const cartSlice = createSlice({
             const cryptoToRemove = action.payload;
             state.cart = state.cart.filter(item => item.uuid !== cryptoToRemove.uuid);
         },
-        // clearCart(state) {
-        //     state.cart = [];
-        // },
+        clearCart(state) {
+            state.cart = [];
+        },
     },
 });
 

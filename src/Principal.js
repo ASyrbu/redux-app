@@ -48,15 +48,15 @@ const Principal = () => {
                         </div>
                     </Layout>
                     <div className="footer">
-                        <Typography.Title level={5} style={{ color: 'white', textAlign: 'center' }}>Copyright © 2023
+                        <Typography.Title level={5} style={{ color: 'white', textAlign: 'center' }}> Copyright © 2023
                             <Link to="/">
                                 Cryptoverse Inc.
                             </Link> <br />
                             All Rights Reserved.
                         </Typography.Title>
                         <Space>
-                            <Link className='text-white' to="/">Home</Link>
-                            <Link className='text-white' to="/news">News</Link>
+                            <Link className='text-white p-1' to="/">Home</Link>
+                            <Link className='text-white p-1' to="/news">News</Link>
                             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded"
                                 onClick={() => dispatch(removeUser())}
                             >Log out from {email}</button>
@@ -65,7 +65,7 @@ const Principal = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     ) : (
         <Redirect to="/login" />
 

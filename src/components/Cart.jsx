@@ -4,10 +4,13 @@ import millify from 'millify';
 import { Button, Card, Col, Row, Typography } from 'antd';
 import { Link } from 'react-router-dom';
 import { clearCart } from '../store/services/slices/cartSlice';
-
+import { useAuth } from '../hooks/use-auth';
+import { Redirect } from 'react-router-dom';
 const { Title } = Typography;
 
 const Cart = () => {
+    const { isAuth, email } = useAuth();
+
     const cart = useSelector(state => state.cart.cart);
     const dispatch = useDispatch();
 
@@ -19,7 +22,9 @@ const Cart = () => {
     const handleClearCart = () => {
         dispatch(clearCart());
     };
-
+    if (!isAuth) {
+        return <Redirect to="/login" />;
+    }
     return (
         <div className="flex flex-col items-center mt-8">
             <Title level={2} className="text-2xl mb-4">

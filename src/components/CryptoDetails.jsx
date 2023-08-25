@@ -2,13 +2,16 @@ import HTMLReactParser from 'html-react-parser';
 import { useParams } from 'react-router-dom';
 import millify from 'millify';
 import { Col, Row, Typography } from 'antd';
+import { useAuth } from '../hooks/use-auth';
 import { MoneyCollectOutlined, DollarCircleOutlined, FundOutlined, ExclamationCircleOutlined, StopOutlined, TrophyOutlined, CheckOutlined, NumberOutlined } from '@ant-design/icons';
 import { useGetCryptoDetailsQuery } from '../store/services/cryptoApi';
 import Loader from './Loader';
+import { Redirect } from 'react-router-dom';
 
 const { Title, Text } = Typography;
 
 const CryptoDetails = () => {
+    const { isAuth, email } = useAuth();
     const { coinId } = useParams();
     const { data, isFetching } = useGetCryptoDetailsQuery(coinId);
     const cryptoDetails = data?.data?.coin;
@@ -29,6 +32,10 @@ const CryptoDetails = () => {
         { title: 'Total Supply', value: `$ ${cryptoDetails?.supply?.total && millify(cryptoDetails?.supply?.total)}`, icon: <ExclamationCircleOutlined /> },
         { title: 'Circulating Supply', value: `$ ${cryptoDetails?.supply?.circulating && millify(cryptoDetails?.supply?.circulating)}`, icon: <ExclamationCircleOutlined /> },
     ];
+    if (!isAuth) {
+        return <Redirect to="/login" />;
+    }
+
     return (
         <Col className="coin-detail-container">
             <Col className="coin-heading-container">

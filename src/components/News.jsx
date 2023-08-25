@@ -1,23 +1,27 @@
 import React, { useState } from 'react';
 import { Select, Typography, Row, Col, Avatar, Card } from 'antd';
 import moment from 'moment';
-
+import { useAuth } from '../hooks/use-auth';
 import { useGetCryptosQuery } from '../store/services/cryptoApi';
 import { useGetCryptoNewsQuery } from '../store/services/cryptoNewsApi';
 import Loader from './Loader';
-
+import { Redirect } from 'react-router-dom';
 const demoImage = 'https://www.bing.com/th?id=OVFT.mpzuVZnv8dwIMRfQGPbOPC&pid=News';
 
 const { Text, Title } = Typography;
 const { Option } = Select;
 
 const News = ({ simplified }) => {
+    const { isAuth, email } = useAuth();
     const [newsCategory, setNewsCategory] = useState('Cryptocurrency');
     const { data } = useGetCryptosQuery(100);
     const { data: cryptoNews } = useGetCryptoNewsQuery({ newsCategory, count: simplified ? 6 : 12 });
 
     if (!cryptoNews?.value) return <Loader />;
 
+    if (!isAuth) {
+        return <Redirect to="/login" />;
+    }
     return (
         <Row gutter={[24, 24]}>
             {!simplified && (

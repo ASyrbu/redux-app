@@ -6,11 +6,13 @@ import { removeFromCart } from '../store/services/slices/cartSlice';
 import { Link } from 'react-router-dom';
 import { Card, Row, Col, Input } from 'antd';
 import { Button } from 'antd';
-
+import { Redirect } from 'react-router-dom';
+import { useAuth } from '../hooks/use-auth';
 import { useGetCryptosQuery } from '../store/services/cryptoApi';
 import Loader from './Loader';
 
 const Cryptocurrencies = ({ simplified }) => {
+    const { isAuth, email } = useAuth();
     const count = simplified ? 10 : 100;
     const { data: cryptosList, isFetching } = useGetCryptosQuery(count);
     const [cryptos, setCryptos] = useState();
@@ -27,6 +29,9 @@ const Cryptocurrencies = ({ simplified }) => {
     }, [cryptosList, searchTerm]);
 
     if (isFetching) return <Loader />;
+    if (!isAuth) {
+        return <Redirect to="/login" />;
+    }
 
     return (
         <>

@@ -60,12 +60,18 @@ const Cryptocurrencies = ({ simplified }) => {
                             </Link>
                             <Button
                                 onClick={() => dispatch(addToCart(currency))}
+                                aria-label={
+                                    cart.some(item => item.uuid === currency.uuid)
+                                        ? 'В Корзине (Добавить ещё)'
+                                        : 'Купить'
+                                }
                             >
                                 {cart.some(item => item.uuid === currency.uuid) ? 'В Корзине (Добавить ещё)' : 'Купить'}
                             </Button>
                             <Button
                                 onClick={() => dispatch(removeFromCart(currency))}
                                 disabled={!cart.some(item => item.uuid === currency.uuid)}
+                                aria-label="Удалить из Корзины"
                             >
                                 Удалить из Корзины
                             </Button>

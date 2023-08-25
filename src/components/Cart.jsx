@@ -26,8 +26,8 @@ const Cart = () => {
                 Your Cart
             </Title>
             <div className="w-full md:w-1/2">
-                {cart.map(crypto => (
-                    <Card key={crypto.uuid} className="mb-4 p-4 bg-white shadow-md">
+                {cart.map((crypto, index) => (
+                    <Card key={index} className="mb-4 p-4 bg-white shadow-md">
                         <Row justify="space-between" align="middle">
                             <Col>
                                 <p className="text-lg">{crypto.name}</p>
